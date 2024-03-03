@@ -1,13 +1,21 @@
 import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
+
 
 const ListView = (props) => {
 
     const {users} = props;
+
     const navigate = useNavigate();
+   
     const navigateUser = () => {
           navigate('/add');
+    }
+
+    const redirectUser = (data) => {
+      // console.log(data);
+      navigate('edit/'+data.id);
     }
     return (
       <>
@@ -25,6 +33,11 @@ const ListView = (props) => {
                         <tr key={index}>
                             <td>{data.username}</td>
                             <td>{data.email}</td>
+                            <td>
+                            <Button variant="primary" type="submit" onClick={() => redirectUser (data)}>
+                              Edit User
+                            </Button>
+                            </td>
                         </tr>
                     )
                 })

@@ -6,13 +6,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import AddList from './components/AddList/AddList';
 
 function App() {
-  const [users, setUsers] = useState([
-    {username: 'Raj', email:'raj@gmail.com'},
-    {username: 'Ravi', email: 'ravi@gmail.com'}
-  ]);
+  const [users, setUsers] = useState([]);
 
   const addUser = (user) => {
-    console.log(user);
       setUsers([...users, {...user} ])
   }
 
@@ -22,6 +18,7 @@ function App() {
         <Routes>
            <Route path="/" element={<ListView   users={users}/>}></Route>
            <Route path="/add" element={<AddList   users={users} addUser={addUser}/>}></Route>
+           <Route path="/edit/:id" element={<AddList   users={users} addUser={addUser}/>}></Route>
         </Routes>
       </Router>
     </>
